@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://github.com/babypandaflash/src/blob/main/background1.png?raw=true') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .top-card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.2);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      position: relative;
+    }
+
+    .hamburger-menu {
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 50px;
+      background-color: #1a1a1a;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .nav-links a {
+      display: block;
+      text-decoration: none;
+      color: #00E2FF;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 15px 0 30px;
+    }
+
+    .logo-container img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .logo-text {
+      margin-top: 5px;
+      font-size: 18px;
+      color: #00E2FF;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #00E2FF;
+      text-align: center;
+    }
+
+    .welcome-text {
+      font-size: 18px;
+      color: #FFFFFF;
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background-color: #00E2FF;
+      color: #0f0f0f;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00E2FF;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #60FF00;
+      box-shadow: 0 0 12px #60FF00;
+      color: #0f0f0f;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 28px;
+      }
+      .welcome-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Card with Hamburger Menu -->
+  <div class="top-card">
+    <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="privatesale.html">Private Sale</a>
+      <a href="presale.html">Presale</a>
+      <a href="publicsale.html">Public Sale</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="https://raw.githubusercontent.com/babypandaflash/src/main/BabyPanda%20Flash.png" alt="Project Logo">
+    <div class="logo-text">BabyPanda Flash</div>
+  </div>
+
+  <!-- Hero Section -->
+  <h1>Welcome to BabyPanda Flash</h1>
+  <p class="welcome-text">
+    BabyPanda Flash is a revolutionary Web3 project blending NFT technology, community rewards, and blockchain transparency into one dynamic ecosystem. Join us as we explore the future of decentralized innovation!
+  </p>
+
+  <button class="cta-button" onclick="location.href='presale.html'">Join the Presale</button>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 BabyPanda Flash. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Auto close menu on link click (mobile UX)
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.getElementById("navLinks").style.display = "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Public Sale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f url('https://raw.githubusercontent.com/babypandaflash/src/main/background1.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .top-card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.2);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      position: relative;
+    }
+
+    .hamburger-menu {
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1a1a1a;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .nav-links a {
+      display: block;
+      text-decoration: none;
+      color: #00E2FF;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 15px 0 30px;
+    }
+
+    .logo-container img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .logo-text {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #00E2FF;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #00E2FF;
+      text-align: center;
+    }
+
+    .content-card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.15);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .content-card p {
+      font-size: 16px;
+      color: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    .neon-button {
+      background-color: #00E2FF;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #00E2FF;
+      transition: background 0.3s ease;
+    }
+
+    .neon-button:hover {
+      background-color: #00bcd4;
+    }
+
+    @media (max-width: 700px) {
+      .content-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kotak Card Teratas dengan Hamburger Menu -->
+  <div class="top-card">
+    <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="privatesale.html">Private Sale</a>
+      <a href="presale.html">Presale</a>
+      <a href="publicsale.html">Public Sale</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+    </div>
+  </div>
+
+  <!-- Logo dan Nama Proyek -->
+  <div class="logo-container">
+    <img src="https://raw.githubusercontent.com/babypandaflash/src/main/BabyPanda%20Flash.png" alt="Project Logo">
+    <div class="logo-text">BabyPanda Flash</div>
+  </div>
+
+  <h1>Public Sale</h1>
+
+  <div class="content-card">
+    <p>
+      Public Sale adalah tahap utama distribusi token untuk semua pengguna. Di tahap ini, siapa pun dapat berpartisipasi dan membeli token BabyPanda Flash sebelum listing di bursa.
+    </p>
+    <p>
+      Pastikan Anda memiliki dompet crypto yang kompatibel dan cukup dana untuk bertransaksi. Segera amankan alokasi Anda sebelum penjualan ditutup.
+    </p>
+    <button class="neon-button">Join Public Sale</button>
+  </div>
+
+  <!-- Footer -->
+  <footer style="margin-top: 60px; text-align: center; color: #FFFFFF; font-size: 14px;">
+    © 2025 BabyPanda Flash. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Tutup menu saat klik link
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.getElementById("navLinks").style.display = "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

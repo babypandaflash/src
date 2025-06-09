@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tokenomics</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f url('https://raw.githubusercontent.com/babypandaflash/src/main/background1.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .top-card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.2);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      position: relative;
+    }
+
+    .hamburger-menu {
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 50px;
+      background-color: #1a1a1a;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .nav-links a {
+      display: block;
+      text-decoration: none;
+      color: #00E2FF;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 15px 0 30px;
+    }
+
+    .logo-container img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .logo-text {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #00E2FF;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #00E2FF;
+      text-align: center;
+    }
+
+    .chart-container {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tokenomics-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
+      margin-top: 40px;
+    }
+
+    .tokenomics-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .tokenomics-card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.1);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .tokenomics-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .tokenomics-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #00E2FF;
+    }
+
+    .color-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .tokenomics-description {
+      font-size: 14px;
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 700px) {
+      .tokenomics-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kotak Card Teratas dengan Hamburger Menu -->
+  <div class="top-card">
+    <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="privatesale.html">Private Sale</a>
+      <a href="presale.html">Presale</a>
+      <a href="publicsale.html">Public Sale</a>
+      <a href="roadmap.html#">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+    </div>
+  </div>
+
+  <!-- Logo dan Nama Proyek DIPINDAHKAN ke Bawah Kotak Card -->
+  <div class="logo-container">
+    <img src="https://raw.githubusercontent.com/babypandaflash/src/main/BabyPanda%20Flash.png" alt="Project Logo">
+    <div class="logo-text">BabyPanda Flash</div>
+  </div>
+
+  <h1>Tokenomics</h1>
+
+  <div class="chart-container">
+    <canvas id="tokenomicsChart"></canvas>
+  </div>
+
+  <div class="tokenomics-grid">
+    <div class="tokenomics-row">
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#f77b7b;"></span>Presale (20%)</div>
+        <div class="tokenomics-description">Early fundraising for committed investors before public launch.</div>
+      </div>
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#4a90e2;"></span>Public Sale (14%)</div>
+        <div class="tokenomics-description">Main public token offering open to all participants.</div>
+      </div>
+    </div>
+    <div class="tokenomics-row">
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#7ed957;"></span>DEX Liquidity (12%)</div>
+        <div class="tokenomics-description">Used to provide liquidity on decentralized exchanges. (e.g Raydium)</div>
+      </div>
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#fbbd4b;"></span>NFT Minting Rewards (6%)</div>
+        <div class="tokenomics-description">Incentives for NFT minters in the ecosystem.</div>
+      </div>
+    </div>
+    <div class="tokenomics-row">
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#a48ff6;"></span>Private Sale (14%)</div>
+        <div class="tokenomics-description">Allocation for selected investors or institutions.</div>
+      </div>
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#f9a3c2;"></span>Marketing & Partnerships (5%)</div>
+        <div class="tokenomics-description">Promotion and growth funding.</div>
+      </div>
+    </div>
+    <div class="tokenomics-row">
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#b8e986;"></span>Team & Founders (12%)</div>
+        <div class="tokenomics-description">Allocation with vesting for the team and founders.</div>
+      </div>
+      <div class="tokenomics-card">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#f178b6;"></span>Community (15%)</div>
+        <div class="tokenomics-description">Early Community rewards, airdrops, and events.</div>
+      </div>
+    </div>
+    <div class="tokenomics-row">
+      <div class="tokenomics-card" style="margin: 0 auto;">
+        <div class="tokenomics-title"><span class="color-dot" style="background-color:#9de0f6;"></span>Reserve (2%)</div>
+        <div class="tokenomics-description">Backup fund for future needs or emergencies.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright Footer -->
+  <footer style="margin-top: 60px; text-align: center; color: #FFFFFF; font-size: 14px;">
+    © 2025 BabyPanda Flash. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: [
+          'Presale (20%)',
+          'Public Sale (14%)',
+          'DEX Liquidity (12%)',
+          'NFT Minting Rewards (6%)',
+          'Private Sale (14%)',
+          'Marketing & Partnerships (5%)',
+          'Team & Founders (12%)',
+          'Community (15%)',
+          'Reserve (2%)'
+        ],
+        datasets: [{
+          data: [20, 14, 12, 6, 14, 5, 12, 15, 2],
+          backgroundColor: [
+            '#f77b7b', '#4a90e2', '#7ed957', '#fbbd4b',
+            '#a48ff6', '#f9a3c2', '#b8e986', '#f178b6', '#9de0f6'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
