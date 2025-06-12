@@ -1,47 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Connect Solana Wallet</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2rem;
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      margin: 10px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
-    .phantom { background-color: #512da8; color: white; }
-    .solflare { background-color: #f7931a; color: white; }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Solana Wallet Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+  <h1>🔗 Connect Solana Wallet</h1>
 
-  <h1>🔗 Connect to Solana Wallet</h1>
-
-  <button class="phantom" onclick="connectWithPhantom()">Connect with Phantom</button>
-  <button class="solflare" onclick="connectWithSolflare()">Connect with Solflare</button>
+  <button onclick="connectPhantom()">Connect with Phantom</button>
+  <button onclick="connectSolflare()">Connect with Solflare</button>
 
   <script>
-    function connectWithPhantom() {
-      const appUrl = encodeURIComponent(window.location.href);
-      const phantomLink = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&redirect_link=${appUrl}`;
-      window.open(phantomLink, "_blank");
+    const APP_URL = "https://babypandaflash.vercel.app/"; // <- ini HARUS diubah ke domain kamu
+    const REDIRECT_URL = APP_URL + "/https://babypandaflash.vercel.app/"; // bisa halaman kosong atau sama
+
+    function connectPhantom() {
+      const phantomLink = `https://phantom.app/ul/v1/connect?app_url=${encodeURIComponent(APP_URL)}&redirect_link=${encodeURIComponent(REDIRECT_URL)}`;
+      window.location.href = phantomLink;
     }
 
-    function connectWithSolflare() {
-      const redirectUrl = encodeURIComponent(window.location.href);
-      const solflareLink = `https://solflare.com/ul/v1/connect?redirect_url=${redirectUrl}`;
-      window.open(solflareLink, "_blank");
+    function connectSolflare() {
+      const solflareLink = `https://solflare.com/ul/v1/connect?redirect_url=${encodeURIComponent(REDIRECT_URL)}`;
+      window.location.href = solflareLink;
     }
   </script>
-
 </body>
 </html>
