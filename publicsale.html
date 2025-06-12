@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BabyPanda Flash - Public Sale</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <script src="https://unpkg.com/@web3modal/standalone@2.6.0"></script>
+  <script src="https://unpkg.com/@web3modal/standalone@3.7.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.88.0/lib/index.iife.min.js"></script>
   <style>
-    /* Pola animasi panda */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -30,9 +29,7 @@
       color: #1EC224;
     }
 
-    .menu-card,
-    .info-card,
-    .phase {
+    .menu-card, .info-card, .phase {
       background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
       background-repeat: repeat;
       background-size: 120px;
@@ -181,7 +178,7 @@
       <a href="#">Presale</a>
       <a href="#">Public Sale</a>
       <a href="#">Roadmap</a>
-      <a href="#">Tokenomis</a>
+      <a href="#">Tokenomics</a>
     </div>
   </div>
 
@@ -189,27 +186,19 @@
 
   <div class="info-card">
     <p>The Public Sale is the main phase of token distribution open to all users.</p>
-    <p>During this stage, anyone can participate and purchase BabyPanda Flash tokens before they are listed on exchanges.</p>
     <p>This allocation is 16% of the total supply, providing a chance to support the project.</p>
-    <p>Make sure you have a compatible crypto wallet and sufficient funds to complete the transaction.</p>
-    <p>Secure your allocation before the sale ends.</p>
-    <p>To participate in the Public Sale, you will need a compatible wallet (such as Phantom) and connect through this DApp.</p>
-    <p>Stay tuned to our official channels on Discord and Twitter for further updates.</p>
-    <p>Don't miss your chance to join our distribution early supporters!</p>
-    <p>Whitelist your wallet and be the first to create our future NFT collections.</p>
+    <p>Make sure you have a compatible wallet and sufficient funds to complete the transaction.</p>
     <h2>💰 Public Sale</h2>
     <p>Total Supply: 1,000,000,000</p>
     <p>Public Sale Allocation (16%): 160,000,000</p>
   </div>
 
-  <!-- CONNECT WALLET BUTTON -->
   <div style="display: flex; justify-content: center; margin-top: 20px;">
     <button id="connectWalletButton">🔌 Connect Wallet</button>
   </div>
 
   <div class="container">
 
-    <!-- PHASE 1 -->
     <div class="phase" id="phase1">
       <h2>Phase 1</h2>
       <div class="countdown" id="countdown1">Countdown Phase 1</div>
@@ -225,7 +214,6 @@
       </div>
     </div>
 
-    <!-- PHASE 2 -->
     <div class="phase" id="phase2">
       <h2>Phase 2</h2>
       <div class="countdown" id="countdown2">Countdown Phase 2</div>
@@ -311,29 +299,26 @@
       input.value = "";
     }
 
-    // Wallet connect logic
-    const projectId = "7707017a1b1e83dac90b93ff56640b7f"; // Ganti dengan projectId Web3Modal Anda jika tersedia
+    // ✅ Web3Modal Wallet Connect v3.7.2 (Standalone)
+    const projectId = "7707017a1b1e83dac90b93ff56640b7f";
 
-    const solanaProviderOptions = {
+    const modal = window.web3modalStandalone.initStandaloneConnectModal({
       projectId,
       chains: ["solana:mainnet"],
       standaloneChains: ["solana:mainnet"],
-      walletConnectVersion: 2,
       metadata: {
         name: "BabyPanda",
         description: "Public Sale DApp",
         url: "https://babypandaflash.vercel.app",
-        icons: ["https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png"],
-      },
-    };
-
-    const modal = window.web3modalStandalone.initStandaloneConnectModal(solanaProviderOptions);
+        icons: ["https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png"]
+      }
+    });
 
     const connectButton = document.getElementById("connectWalletButton");
 
     connectButton.addEventListener("click", async () => {
       try {
-        const provider = await modal.connectWallet();
+        const provider = await modal.connect();
         const accounts = await provider.request({ method: "solana_requestAccounts" });
         const publicKey = accounts[0];
         connectButton.textContent = `✅ ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
@@ -346,4 +331,5 @@
     });
   </script>
 </body>
-</html>
+  </html>
+  
