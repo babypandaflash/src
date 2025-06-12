@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BabyPanda Flash - Public Sale</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://unpkg.com/@web3modal/standalone@2.6.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.88.0/lib/index.iife.min.js"></script>
   <style>
+    /* Pola animasi panda */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -163,17 +166,6 @@
       font-size: 16px;
       color: #FFFFFF;
     }
-
-    .wallet-connection {
-      margin: 30px auto 0;
-      text-align: center;
-    }
-
-    #walletAddress {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #FFFFFF;
-    }
   </style>
 </head>
 <body>
@@ -183,13 +175,13 @@
       <i class="fas fa-bars"></i>
     </div>
     <div class="menu-items">
-      <a href="index.html">Home</a>
-      <a href="privatesalewhitelist.html">Private Sale Whitelist</a>
-      <a href="privatesale.html">Private Sale</a>
-      <a href="presale.html">Presale</a>
-      <a href="publicsale.html">Public Sale</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="tokenomis.html">Tokenomis</a>
+      <a href="#">Home</a>
+      <a href="#">Private Sale Whitelist</a>
+      <a href="#">Private Sale</a>
+      <a href="#">Presale</a>
+      <a href="#">Public Sale</a>
+      <a href="#">Roadmap</a>
+      <a href="#">Tokenomis</a>
     </div>
   </div>
 
@@ -210,10 +202,9 @@
     <p>Public Sale Allocation (16%): 160,000,000</p>
   </div>
 
-  <!-- Connect Wallet Button -->
-  <div class="wallet-connection">
+  <!-- CONNECT WALLET BUTTON -->
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
     <button id="connectWalletButton">🔌 Connect Wallet</button>
-    <p id="walletAddress"></p>
   </div>
 
   <div class="container">
@@ -262,13 +253,6 @@
   <div class="copyright">
     © 2025 BabyPanda Flash. All rights reserved.
   </div>
-
-  <!-- Connect Wallet Script -->
-  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-wallets@0.21.12/umd/wallets.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-base@0.9.22/umd/base.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-core@0.11.20/umd/core.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-web@0.10.2/umd/web.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.89.3/lib/index.iife.min.js"></script>
 
   <script>
     function toggleMenu() {
@@ -327,44 +311,37 @@
       input.value = "";
     }
 
-    // Wallet Connect
-    const { WalletProvider } = window["wallet-adapter-core"];
-    const {
-      PhantomWalletAdapter,
-      SolflareWalletAdapter,
-      BitKeepWalletAdapter,
-      TrustWalletAdapter,
-      TokenPocketWalletAdapter,
-      BackpackWalletAdapter,
-      SlopeWalletAdapter,
-      OKXWalletAdapter,
-    } = window["wallet-adapter-wallets"];
+    // Wallet connect logic
+    const projectId = "demo"; // Ganti dengan projectId Web3Modal Anda jika tersedia
 
-    const wallets = [
-      new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
-      new BitKeepWalletAdapter(),
-      new TrustWalletAdapter(),
-      new TokenPocketWalletAdapter(),
-      new BackpackWalletAdapter(),
-      new SlopeWalletAdapter(),
-      new OKXWalletAdapter(),
-    ];
+    const solanaProviderOptions = {
+      projectId,
+      chains: ["solana:mainnet"],
+      standaloneChains: ["solana:mainnet"],
+      walletConnectVersion: 2,
+      metadata: {
+        name: "BabyPanda Flash",
+        description: "Public Sale DApp",
+        url: "https://babypandaflash.com",
+        icons: ["https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png"],
+      },
+    };
 
-    const provider = new WalletProvider(wallets);
+    const modal = window.web3modalStandalone.initStandaloneConnectModal(solanaProviderOptions);
 
-    const connectBtn = document.getElementById("connectWalletButton");
-    const walletAddressDisplay = document.getElementById("walletAddress");
+    const connectButton = document.getElementById("connectWalletButton");
 
-    connectBtn.addEventListener("click", async () => {
+    connectButton.addEventListener("click", async () => {
       try {
-        await provider.connect();
-        const publicKey = provider.publicKey.toBase58();
-        walletAddressDisplay.textContent = `Connected: ${publicKey}`;
-        connectBtn.textContent = "✅ Wallet Connected";
-      } catch (err) {
-        console.error("Connection failed:", err);
-        walletAddressDisplay.textContent = "❌ Connection failed.";
+        const provider = await modal.connectWallet();
+        const accounts = await provider.request({ method: "solana_requestAccounts" });
+        const publicKey = accounts[0];
+        connectButton.textContent = `✅ ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
+        connectButton.disabled = true;
+        connectButton.style.backgroundColor = "#2e7d32";
+      } catch (error) {
+        console.error("Wallet connection failed", error);
+        alert("Failed to connect wallet.");
       }
     });
   </script>
