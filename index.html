@@ -1,348 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BabyPanda Flash - Public Sale</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <script src="https://unpkg.com/@web3modal/standalone@2.6.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.88.0/lib/index.iife.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect Solana Wallet</title>
   <style>
-    /* Pola animasi panda */
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png') repeat;
-      animation: pan-bg 30s linear infinite;
-      color: white;
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding: 2rem;
     }
-
-    @keyframes pan-bg {
-      from { background-position: 0 0; }
-      to   { background-position: 800px 800px; }
-    }
-
-    header {
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #1EC224;
-    }
-
-    .menu-card,
-    .info-card,
-    .phase {
-      background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
-      background-repeat: repeat;
-      background-size: 120px;
-      border: 2px solid #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .menu-card {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 10px;
-    }
-
-    .hamburger {
-      display: block;
-      cursor: pointer;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .menu-items {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-    }
-
-    .menu-card.active .menu-items {
-      display: flex;
-    }
-
-    .info-card {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .info-card p {
-      margin: 10px 0;
-      color: #FFFFFF;
-    }
-
-    .info-card h2 {
-      color: #1EC224;
-    }
-
-    .countdown {
-      font-size: 20px;
-      margin: 10px 0;
-    }
-
-    .phase {
-      padding: 20px;
-      margin: 20px auto;
-      color: #FFFFFF;
-      max-width: 600px;
-    }
-
-    .phase h2 {
-      margin-top: 0;
-      color: #1EC224;
-    }
-
-    .input-section {
-      margin: 15px 0;
-    }
-
-    input[type="number"] {
-      padding: 8px;
-      font-size: 16px;
-      width: 80%;
-      border-radius: 8px;
-      border: none;
-    }
-
     button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 16px;
+      margin: 10px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
-      background-color: #4caf50;
-      color: white;
-      margin-top: 10px;
     }
-
-    .progress-bar {
-      background-color: #444;
-      border-radius: 8px;
-      overflow: hidden;
-      height: 20px;
-      margin-bottom: 15px;
-    }
-
-    .progress-fill {
-      background-color: #00e676;
-      height: 100%;
-      width: 0%;
-      text-align: center;
-      color: black;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .socials {
-      margin-top: 30px;
-    }
-
-    .socials a {
-      color: white;
-      margin: 0 10px;
-      font-size: 24px;
-      transition: color 0.3s;
-    }
-
-    .socials a:hover {
-      color: #00e5ff;
-    }
-
-    .copyright {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 16px;
-      color: #FFFFFF;
-    }
+    .phantom { background-color: #512da8; color: white; }
+    .solflare { background-color: #f7931a; color: white; }
   </style>
 </head>
 <body>
 
-  <div class="menu-card" id="menuCard">
-    <div class="hamburger" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="menu-items">
-      <a href="#">Home</a>
-      <a href="#">Private Sale Whitelist</a>
-      <a href="#">Private Sale</a>
-      <a href="#">Presale</a>
-      <a href="#">Public Sale</a>
-      <a href="#">Roadmap</a>
-      <a href="#">Tokenomis</a>
-    </div>
-  </div>
+  <h1>🔗 Connect to Solana Wallet</h1>
 
-  <header>BabyPanda Flash - Public Sale</header>
-
-  <div class="info-card">
-    <p>The Public Sale is the main phase of token distribution open to all users.</p>
-    <p>During this stage, anyone can participate and purchase BabyPanda Flash tokens before they are listed on exchanges.</p>
-    <p>This allocation is 16% of the total supply, providing a chance to support the project.</p>
-    <p>Make sure you have a compatible crypto wallet and sufficient funds to complete the transaction.</p>
-    <p>Secure your allocation before the sale ends.</p>
-    <p>To participate in the Public Sale, you will need a compatible wallet (such as Phantom) and connect through this DApp.</p>
-    <p>Stay tuned to our official channels on Discord and Twitter for further updates.</p>
-    <p>Don't miss your chance to join our distribution early supporters!</p>
-    <p>Whitelist your wallet and be the first to create our future NFT collections.</p>
-    <h2>💰 Public Sale</h2>
-    <p>Total Supply: 1,000,000,000</p>
-    <p>Public Sale Allocation (16%): 160,000,000</p>
-  </div>
-
-  <!-- CONNECT WALLET BUTTON -->
-  <div style="display: flex; justify-content: center; margin-top: 20px;">
-    <button id="connectWalletButton">🔌 Connect Wallet</button>
-  </div>
-
-  <div class="container">
-
-    <!-- PHASE 1 -->
-    <div class="phase" id="phase1">
-      <h2>Phase 1</h2>
-      <div class="countdown" id="countdown1">Countdown Phase 1</div>
-      <p>Allocation: 8% - 80,000,000</p>
-      <p>Price: <strong>0.0000175 SOL / token</strong></p>
-      <p>Hardcap: <strong>1,400 SOL</strong></p>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress1">0% (0 / 1400)</div>
-      </div>
-      <div class="input-section">
-        <input type="number" id="solInput1" min="0.2" max="5" step="0.01" placeholder="Enter amount in SOL">
-        <button onclick="buyTokens(1)">Buy Now</button>
-      </div>
-    </div>
-
-    <!-- PHASE 2 -->
-    <div class="phase" id="phase2">
-      <h2>Phase 2</h2>
-      <div class="countdown" id="countdown2">Countdown Phase 2</div>
-      <p>Allocation: 8% - 80,000,000</p>
-      <p>Price: <strong>0.0000225 SOL / token</strong></p>
-      <p>Hardcap: <strong>1,800 SOL</strong></p>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress2">0% (0 / 1800)</div>
-      </div>
-      <div class="input-section">
-        <input type="number" id="solInput2" min="0.2" max="5" step="0.01" placeholder="Enter amount in SOL">
-        <button onclick="buyTokens(2)">Buy Now</button>
-      </div>
-    </div>
-
-    <div class="socials">
-      <a href="https://t.me/babypandaflash" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://twitter.com/babypandaflash" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://discord.gg/babypandaflash" target="_blank"><i class="fab fa-discord"></i></a>
-      <a href="https://instagram.com/babypandaflash" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://youtube.com/@babypandaflash" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2025 BabyPanda Flash. All rights reserved.
-  </div>
+  <button class="phantom" onclick="connectWithPhantom()">Connect with Phantom</button>
+  <button class="solflare" onclick="connectWithSolflare()">Connect with Solflare</button>
 
   <script>
-    function toggleMenu() {
-      document.getElementById("menuCard").classList.toggle("active");
+    function connectWithPhantom() {
+      const appUrl = encodeURIComponent(window.location.href);
+      const phantomLink = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&redirect_link=${appUrl}`;
+      window.open(phantomLink, "_blank");
     }
 
-    const phase1Start = new Date("2025-06-13T00:00:00Z");
-    const phase2Start = new Date("2025-06-14T00:00:00Z");
-
-    function updateCountdown(id, date) {
-      const now = new Date();
-      const diff = date - now;
-      const el = document.getElementById(id);
-      if (diff <= 0) {
-        el.textContent = id === 'countdown1' ? "Phase 1 is LIVE!" : "Phase 2 is LIVE!";
-        return;
-      }
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      el.textContent = `${id === 'countdown1' ? "Phase 1 starts in" : "Phase 2 starts in"}: ${hours}h ${minutes}m ${seconds}s`;
+    function connectWithSolflare() {
+      const redirectUrl = encodeURIComponent(window.location.href);
+      const solflareLink = `https://solflare.com/ul/v1/connect?redirect_url=${redirectUrl}`;
+      window.open(solflareLink, "_blank");
     }
-
-    setInterval(() => {
-      updateCountdown("countdown1", phase1Start);
-      updateCountdown("countdown2", phase2Start);
-    }, 1000);
-
-    let soldPhase1 = 0;
-    let soldPhase2 = 0;
-
-    function buyTokens(phase) {
-      const input = document.getElementById(`solInput${phase}`);
-      let value = parseFloat(input.value);
-      if (isNaN(value) || value < 0.2 || value > 5) {
-        alert("Please enter a valid amount between 0.2 and 5 SOL.");
-        return;
-      }
-
-      if (phase === 1) {
-        soldPhase1 += value;
-        if (soldPhase1 > 1400) soldPhase1 = 1400;
-        const percent = ((soldPhase1 / 1400) * 100).toFixed(1);
-        document.getElementById("progress1").style.width = `${percent}%`;
-        document.getElementById("progress1").textContent = `${percent}% (${soldPhase1.toFixed(2)} / 1400)`;
-        window.open(`https://solana.com/pay?amount=${value}&reference=phase1`, "_blank");
-      } else {
-        soldPhase2 += value;
-        if (soldPhase2 > 1800) soldPhase2 = 1800;
-        const percent = ((soldPhase2 / 1800) * 100).toFixed(1);
-        document.getElementById("progress2").style.width = `${percent}%`;
-        document.getElementById("progress2").textContent = `${percent}% (${soldPhase2.toFixed(2)} / 1800)`;
-        window.open(`https://solana.com/pay?amount=${value}&reference=phase2`, "_blank");
-      }
-
-      input.value = "";
-    }
-
-    const modal = window.web3modalStandalone.initStandaloneConnectModal(solanaProviderOptions);
-    // Wallet connect logic
-    const projectId = "7707017a1b1e83dac90b93ff56640b7f"; // Ganti dengan projectId Web3Modal Anda jika tersedia
-
-    const solanaProviderOptions = {
-      projectId,
-      chains: ["solana:mainnet"],
-      standaloneChains: ["solana:mainnet"],
-      walletConnectVersion: 2,
-      metadata: {
-        name: "BabyPanda Flash",
-        description: "Public Sale DApp",
-        url: "https://babypandaflash.vercel.app",
-        icons: ["https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png"],
-      },
-    };
-
-    const connectButton = document.getElementById("connectWalletButton");
-
-    connectButton.addEventListener("click", async () => {
-      try {
-        const provider = await modal.connect();
-        const accounts = await provider.request({ method: "solana_requestAccounts" });
-        const publicKey = accounts[0];
-        connectButton.textContent = `✅ ${publicKey.slice(0, 4)}...${publicKey.slice(-4)}`;
-        connectButton.disabled = true;
-        connectButton.style.backgroundColor = "#2e7d32";
-      } catch (error) {
-        console.error("Wallet connection failed", error);
-        alert("Failed to connect wallet.");
-      }
-    });
   </script>
+
 </body>
 </html>
