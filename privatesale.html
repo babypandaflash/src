@@ -158,6 +158,28 @@
     .social-media a:hover img {
       transform: scale(1.2);
     }
+
+    #walletAddress {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #00E2FF;
+      word-break: break-all;
+    }
+
+    #connectWalletBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00E2FF;
+      color: #0f0f0f;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #connectWalletBtn:hover {
+      background-color: #00bcd4;
+    }
   </style>
 </head>
 <body>
@@ -178,7 +200,7 @@
   <div class="logo-container">
     <img src="https://raw.githubusercontent.com/babypandaflash/src/main/BabyPanda%20Flash.png" alt="Project Logo">
     <div class="logo-text">BabyPanda Flash</div>
-  </div>
+    </div>
 
   <div class="card">
     <h2 style="color: #00E2FF;">Check if Your Wallet is Eligible</h2>
@@ -192,13 +214,10 @@
     <div class="card">
       <h3 style="color: #00E2FF;">💰 Private Sale</h3>
 
-      <!-- Connect Wallet Button -->
-      <div id="wallet-connect-section" style="margin: 15px 0; display: flex; justify-content: center;">
-        <button id="connectWalletBtn" style="padding: 10px 20px; background-color: #00E2FF; color: #000; border: none; border-radius: 8px; cursor: pointer;">
-          Connect Wallet
-        </button>
-      </div>
-      <div id="wallet-address-display" style="text-align: center; font-size: 14px; color: #00E2FF; margin-bottom: 10px;"></div>
+    <!-- Connect Wallet Button -->
+      <button id="connectWalletBtn">Connect Wallet</button>
+      <div id="walletAddress"></div>
+  </div>
 
       <p>Private Sale Total Supply: 1,000,000,000 $BPANDA</p>
       <p>Private Sale Allocation (16%): 160,000,000 $BPANDA</p>
@@ -223,7 +242,6 @@
     </div>
   </div>
 
-  <!-- Sosial Media -->
   <div class="social-media">
     <a href="https://discord.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/discord.png" alt="Discord"></a>
     <a href="https://twitter.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/twitter.png" alt="Twitter"></a>
@@ -238,6 +256,10 @@
   <footer>
     © 2025 BabyPanda Flash. All rights reserved.
   </footer>
+
+  <!-- Web3Modal Standalone -->
+  <script src="https://unpkg.com/@web3modal/standalone@3.5.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
 
   <script>
     function toggleMenu() {
@@ -295,30 +317,7 @@
       window.open(solanaLink, "_blank");
     }
 
-    // Wallet Connect Logic
-    let connectedWalletAddress = null;
-
-    async function connectWallet() {
-      if ('solana' in window) {
-        const provider = window.solana;
-        try {
-          const resp = await provider.connect();
-          connectedWalletAddress = resp.publicKey.toString();
-          document.getElementById("wallet-address-display").innerText = "🔗 Connected: " + connectedWalletAddress;
-          document.getElementById("connectWalletBtn").innerText = "Connected";
-          document.getElementById("connectWalletBtn").disabled = true;
-        } catch (err) {
-          console.error("Wallet connection failed:", err);
-          alert("Wallet connection failed.");
-        }
-      } else {
-        alert("No Solana wallet found. Please install Phantom or Solflare.");
-      }
-    }
-
-    document.getElementById("connectWalletBtn").addEventListener("click", connectWallet);
-
-    // Countdown Timer Logic
+    // Countdown Timer
     const saleStartTime = new Date("2025-06-25T10:00:00Z").getTime();
     const timerDisplay = document.getElementById("timer");
     const solInput = document.getElementById("solInput");
@@ -345,6 +344,32 @@
 
       timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }, 1000);
+
+    // Web3Modal Standalone Init
+    const modal = window.Web3Modal.default;
+    const ethers = window.ethers;
+    const web3Modal = modal({
+      projectId: '518de6740cc9b7b3ee64830ff95e7d77',
+      walletConnectParameters: {
+        projectId: '518de6740cc9b7b3ee64830ff95e7d77'
+      }
+    });
+
+    const connectWalletBtn = document.getElementById("connectWalletBtn");
+    const walletAddressDiv = document.getElementById("walletAddress");
+
+    connectWalletBtn.addEventListener("click", async () => {
+      try {
+        const provider = await web3Modal.connect();
+        const ethersProvider = new ethers.BrowserProvider(provider);
+        const signer = await ethersProvider.getSigner();
+        const address = await signer.getAddress();
+        walletAddressDiv.textContent = `Connected: ${address}`;
+      } catch (error) {
+        console.error("Wallet connection failed", error);
+        walletAddressDiv.textContent = "❌ Wallet not connected";
+      }
+    });
   </script>
 </body>
 </html>
