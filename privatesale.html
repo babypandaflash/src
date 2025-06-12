@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pivate Sale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f url('https://raw.githubusercontent.com/babypandaflash/src/main/background1.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-card {
+      width: 100%;
+      max-width: 600px;
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 226, 255, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .hamburger-menu {
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: #1a1a1a;
+      padding: 15px 25px;
+      border-radius: 10px;
+      margin-top: 10px;
+      z-index: 10;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #00E2FF;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    
+    button:hover:not(:disabled) {
+      background-color: #00E2FF;
+      color: #0f0f0f;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 15px 0 10px;
+    }
+
+    .logo-container img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .logo-text {
+      margin-top: 5px;
+      font-size: 20px;
+      color: #00E2FF;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .card {
+      background: #1f1f1f;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      text-align: center;
+      font-size: 16px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      background: #333;
+      color: white;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: #00E2FF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+    .progress-container {
+      background: #333;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 30px;
+      width: 100%;
+      position: relative;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #00E2FF;
+      width: 0%;
+      text-align: left;
+      padding-left: 10px;
+      line-height: 30px;
+      color: white;
+      font-weight: bold;
+    }
+    
+    footer {
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 16px;
+      margin: 30px 0 10px;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-media a img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-media a:hover img {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="top-card">
+    <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="privatesale.html">Private Sale</a>
+      <a href="presale.html">Presale</a>
+      <a href="publicsale.html">Public Sale</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="https://raw.githubusercontent.com/babypandaflash/src/main/BabyPanda%20Flash.png" alt="Project Logo">
+    <div class="logo-text">BabyPanda Flash</div>
+  </div>
+
+  <div class="card">
+    <h2 style="color: #00E2FF;">Check if Your Wallet is Eligible</h2>
+    <p>Enter your wallet address to verify your eligibility for the BabyPanda Flash Private Sale.</p>
+    <input type="text" id="walletInput" placeholder="Enter your wallet address">
+    <button id="checkBtn" onclick="checkWallet()">Check</button>
+    <div id="resultMessage" style="margin-top: 1rem;"></div>
+  </div>
+
+  <div id="tokenInfo" style="display: none;">
+    <div class="card">
+      <h3 style="color: #00E2FF;">💰 Private Sale</h3>
+
+      <!-- Connect Wallet Button -->
+      <div id="wallet-connect-section" style="margin: 15px 0; display: flex; justify-content: center;">
+        <button id="connectWalletBtn" style="padding: 10px 20px; background-color: #00E2FF; color: #000; border: none; border-radius: 8px; cursor: pointer;">
+          Connect Wallet
+        </button>
+      </div>
+      <div id="wallet-address-display" style="text-align: center; font-size: 14px; color: #00E2FF; margin-bottom: 10px;"></div>
+
+      <p>Private Sale Total Supply: 1,000,000,000 $BPANDA</p>
+      <p>Private Sale Allocation (16%): 160,000,000 $BPANDA</p>
+      <p>Price: 0.0000075 SOL per token</p>
+      <p>Hardcap: 1.200 SOL</p>
+      <p>Min Buy: 0.2 SOL | Max Buy: 2 SOL</p>
+      <p id="hardcapText">Hardcap Progress: (0.00 / 1.200 SOL)</p>
+
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+      </div>
+
+      <label for="solInput">Enter amount (0.2 - 2 SOL):</label>
+
+      <!-- Countdown Timer -->
+      <div id="countdownTimer" style="margin: 15px 0; font-size: 18px; font-weight: bold; color: #00E2FF; text-align: center;">
+        Sale opens in: <span id="timer">00:00:00</span>
+      </div>
+
+      <input type="number" id="solInput" min="0.2" max="2" step="0.01">
+      <button onclick="buyNow()">Buy Now</button>
+    </div>
+  </div>
+
+  <!-- Sosial Media -->
+  <div class="social-media">
+    <a href="https://discord.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/discord.png" alt="Discord"></a>
+    <a href="https://twitter.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/twitter.png" alt="Twitter"></a>
+    <a href="https://t.me" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/telegram.png" alt="Telegram"></a>
+    <a href="https://instagram.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/instagram.png" alt="Instagram"></a>
+    <a href="https://youtube.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/youtube.png" alt="YouTube"></a>
+    <a href="https://linktr.ee" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/linktree.png" alt="Linktree"></a>
+    <a href="https://yourwebsite.com" target="_blank"><img src="https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/babypandaflash.png" alt="Website"></a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 BabyPanda Flash. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSunq4clpjfgj0R96D6NP_aKe2xSDyO8NKP83uBNvpIlasA8IBgT0EWBCgaRTtiYkKfQsM6dB-Fc6nb/pub?output=csv";
+    let totalRaised = 0;
+
+    async function checkWallet() {
+      const wallet = document.getElementById("walletInput").value.trim();
+      const checkBtn = document.getElementById("checkBtn");
+      const resultMsg = document.getElementById("resultMessage");
+      checkBtn.disabled = true;
+      resultMsg.textContent = 'Checking...';
+
+      try {
+        const res = await fetch(csvURL);
+        const text = await res.text();
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l);
+        const wallets = lines.slice(1).map(line => {
+          const cols = line.split(',');
+          return cols[0]?.trim();
+        });
+
+        if (wallets.includes(wallet)) {
+          resultMsg.innerHTML = "<p style='color:#00E2FF;'>🎉 You are eligible for the Private Sale!</p>";
+          document.getElementById("tokenInfo").style.display = "block";
+        } else {
+          resultMsg.innerHTML = "<p style='color:red;'>❌ Your wallet is not eligible.</p>";
+          checkBtn.disabled = false;
+        }
+      } catch (err) {
+        console.error(err);
+        resultMsg.innerHTML = "<p style='color:red;'>❌ Error loading wallet data.</p>";
+        checkBtn.disabled = false;
+      }
+    }
+
+    function buyNow() {
+      const solAmount = parseFloat(document.getElementById("solInput").value);
+      if (solAmount < 0.2 || solAmount > 2 || isNaN(solAmount)) {
+        alert("Please enter an amount between 0.2 and 2 SOL");
+        return;
+      }
+
+      totalRaised += solAmount;
+      const progress = Math.min((totalRaised / 1200) * 100, 100).toFixed(2);
+      document.getElementById("progressBar").style.width = progress + "%";
+      document.getElementById("progressBar").innerText = progress + "%";
+      document.getElementById("hardcapText").innerText = `Hardcap Progress: (${totalRaised.toFixed(2)} / 1200 SOL)`;
+
+      const solanaLink = `solana:6obuXwr2TNZdqRZx3ujo4bazek715ipMMah4rzt7SwoL?amount=${solAmount}&label=BabyPanda%20Private%20Sale&message=Private%20Sale%20Purchase`;
+      window.open(solanaLink, "_blank");
+    }
+
+    // Wallet Connect Logic
+    let connectedWalletAddress = null;
+
+    async function connectWallet() {
+      if ('solana' in window) {
+        const provider = window.solana;
+        try {
+          const resp = await provider.connect();
+          connectedWalletAddress = resp.publicKey.toString();
+          document.getElementById("wallet-address-display").innerText = "🔗 Connected: " + connectedWalletAddress;
+          document.getElementById("connectWalletBtn").innerText = "Connected";
+          document.getElementById("connectWalletBtn").disabled = true;
+        } catch (err) {
+          console.error("Wallet connection failed:", err);
+          alert("Wallet connection failed.");
+        }
+      } else {
+        alert("No Solana wallet found. Please install Phantom or Solflare.");
+      }
+    }
+
+    document.getElementById("connectWalletBtn").addEventListener("click", connectWallet);
+
+    // Countdown Timer Logic
+    const saleStartTime = new Date("2025-06-25T10:00:00Z").getTime();
+    const timerDisplay = document.getElementById("timer");
+    const solInput = document.getElementById("solInput");
+    const buyButton = document.querySelector("button[onclick='buyNow()']");
+
+    solInput.disabled = true;
+    buyButton.disabled = true;
+
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = saleStartTime - now;
+
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdownTimer").innerHTML = "<span style='color:#00E2FF;'>✅ Sale is now open!</span>";
+        solInput.disabled = false;
+        buyButton.disabled = false;
+        return;
+      }
+
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+  </script>
+</body>
+</html>
