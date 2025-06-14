@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BabyPanda Flash - Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png') repeat;
+      animation: pan-bg 30s linear infinite;
+      background-size: 70px;
+      color: white;
+      text-align: center;
+    }
+
+    @keyframes pan-bg {
+      from { background-position: 0 0; }
+      to { background-position: 600px 600px; }
+    }
+
+    .menu-card {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
+      background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
+      background-repeat: repeat;
+      animation: pan-bg 30s linear infinite;
+      background-size: 120px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hamburger {
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .menu-items {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu-items a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .menu-card.active .menu-items {
+      display: flex;
+    }
+
+    h1, h2, p {
+      margin: 10px 0;
+    }
+
+    .title-card {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
+      background-repeat: repeat;
+      animation: pan-bg 30s linear infinite;
+      background-size: 120px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 400px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    button {
+      background-color: #001CB5;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    button:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #FFCC00;
+    }
+
+    .new-card {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
+      background-repeat: repeat;
+      animation: pan-bg 30s linear infinite;
+      background-size: 120px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .new-card p {
+      margin: 10px 0;
+    }
+
+    .smaller-card-inside {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 15px;
+      background-image: url('https://raw.githubusercontent.com/babypandaflash/src/refs/heads/main/BabyPanda.png');
+      background-repeat: repeat;
+      animation: pan-bg 30s linear infinite;
+      background-size: 120px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-size: 18px;
+      color: white;
+    }
+
+    .discord-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #7289DA;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .discord-btn:hover {
+      background-color: #5b6eae;
+    }
+
+    .socials {
+      margin-top: 40px;
+    }
+
+    .socials a {
+      color: #e6194b;
+      margin: 0 10px;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
+      color: #e6194b;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #FFFFFF;
+    }
+</style>
+</head>
+<body>
+
+  <!-- Menu -->
+  <div class="menu-card" id="menuCard">
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-items">
+      <a href="index.html">Home</a>
+      <a href="whitelistprivatesale.html">Whitelist Private Sale</a>
+      <a href="privatesale.html">Private Sale</a>
+      <a href="presale.html">Presale</a>
+      <a href="publicsale.html">Public Sale</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomis.html">Tokenomis</a>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <h1 style="color: #e6194b;">BabyPanda Flash Early Community</h1>
+
+  <!-- Welcome Card -->
+  <div class="title-card">
+    <h2 style="color: #e6194b;">Welcome To BabyPanda Flash</h2>
+    <p>BabyPanda Flash is a revolutionary Web3 project that combines Meme Coin and NFT technology, community rewards, and blockchain transparency into one dynamic ecosystem.</p>
+    <p>Join us as we explore the future of decentralized innovation!</p>
+
+    <!-- Wallet Input -->
+    <input type="text" placeholder="e.g. 3GxF...9KfU Sol Address" id="walletInput" />
+
+    <!-- Submit Button -->
+    <button id="submitBtn" onclick="submitWallet()">Submit</button>
+
+    <!-- Message Area -->
+    <div id="message" class="message"></div>
+  </div>
+
+  <!-- New Card Area -->
+  <div id="newCardArea"></div>
+
+  <!-- Social Media -->
+  <div class="socials">
+    <a href="https://t.me/babypandaflash" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="https://twitter.com/babypandaflash" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://discord.gg/babypandaflash" target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="https://instagram.com/babypandaflash" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@babypandaflash" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="copyright">
+    © 2025 BabyPanda Flash. All rights reserved.
+  </div>
+
+<script>
+  function toggleMenu() {
+      document.getElementById("menuCard").classList.toggle("active");
+    }
+
+    function showMessage(text) {
+      document.getElementById("message").innerText = text;
+    }
+
+    async function getIPAddress() {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        console.error("Failed to fetch IP address:", error);
+        return null;
+      }
+    }
+
+    async function checkPreviousSubmission() {
+      const ip = await getIPAddress();
+      if (!ip) return;
+
+      const submittedIPs = JSON.parse(localStorage.getItem('submittedIPs') || '[]');
+      if (submittedIPs.includes(ip)) {
+        lockForm();
+        showMessage("You have already submitted using this IP address.");
+        showNewCard(); 
+      }
+    }
+
+    function lockForm() {
+      document.getElementById("walletInput").disabled = true;
+      document.getElementById("submitBtn").disabled = true;
+    }
+  
+function showNewCard() {
+  const newCard = document.createElement("div");
+  newCard.className = "new-card";
+
+  const text = "It's a shame if you are late to come early. because we provide some exclusive rewards. If you come early to our community. you come early you deserve our meme coin and deserve to be whitelisted for our NFT.";
+  const lines = text.split(".");
+  lines.forEach(line => {
+    if (line.trim() !== "") {
+      const p = document.createElement("p");
+      p.innerText = line.trim();
+      newCard.appendChild(p);
+    }
+  });
+
+  const smallerCard = document.createElement("div");
+  smallerCard.className = "smaller-card-inside";
+  smallerCard.innerText = "Join Discord Early Community";
+
+  const discordButton = document.createElement("a");
+  discordButton.href = "https://babypanda-flash.up.railway.app/auth/discord";
+  discordButton.target = "_blank";
+  discordButton.className = "discord-btn";
+  discordButton.innerText = "Connect Discord";
+
+  smallerCard.appendChild(document.createElement("br"));
+  smallerCard.appendChild(discordButton);
+
+  // Follow Us on Twitter
+  const followText = document.createElement("div");
+  followText.innerText = "Follow Us on Twitter";
+  followText.style.marginTop = "20px";
+  followText.style.fontSize = "18px";
+  followText.style.color = "white";
+  followText.style.textAlign = "center";
+  smallerCard.appendChild(followText);
+
+  const twitterButton = document.createElement("a");
+  twitterButton.href = "https://babypanda-flash.up.railway.app/auth/twitter";
+  twitterButton.target = "_blank";
+  twitterButton.className = "discord-btn";
+  twitterButton.style.backgroundColor = "#1DA1F2";
+  twitterButton.style.marginTop = "15px";
+  twitterButton.innerText = "Connect Twitter";
+  smallerCard.appendChild(twitterButton);
+
+  // Join Our Telegram Announcements
+  const telegramAnnText = document.createElement("div");
+  telegramAnnText.innerText = "Join Our Telegram Announcements";
+  telegramAnnText.style.marginTop = "20px";
+  telegramAnnText.style.fontSize = "18px";
+  telegramAnnText.style.color = "white";
+  telegramAnnText.style.textAlign = "center";
+  smallerCard.appendChild(telegramAnnText);
+
+  const telegramAnnButton = document.createElement("a");
+  telegramAnnButton.href = "https://babypanda-flash.up.railway.app/auth/telegram-announcements";
+  telegramAnnButton.target = "_blank";
+  telegramAnnButton.className = "discord-btn";
+  telegramAnnButton.style.backgroundColor = "#229ED9";
+  telegramAnnButton.style.marginTop = "15px";
+  telegramAnnButton.innerText = "Connect Telegram";
+  smallerCard.appendChild(telegramAnnButton);
+
+  // Join Our Telegram Chat
+  const telegramChatText = document.createElement("div");
+  telegramChatText.innerText = "Join Our Telegram Chat";
+  telegramChatText.style.marginTop = "20px";
+  telegramChatText.style.fontSize = "18px";
+  telegramChatText.style.color = "white";
+  telegramChatText.style.textAlign = "center";
+  smallerCard.appendChild(telegramChatText);
+
+  const telegramChatButton = document.createElement("a");
+  telegramChatButton.href = "https://babypanda-flash.up.railway.app/auth/telegram-chat";
+  telegramChatButton.target = "_blank";
+  telegramChatButton.className = "discord-btn";
+  telegramChatButton.style.backgroundColor = "#229ED9";
+  telegramChatButton.style.marginTop = "15px";
+  telegramChatButton.innerText = "Connect Telegram";
+  smallerCard.appendChild(telegramChatButton);
+
+  // Subscribe Our YouTube Channel
+  const youtubeText = document.createElement("div");
+  youtubeText.innerText = "Subscribe Our YouTube Channel";
+  youtubeText.style.marginTop = "20px";
+  youtubeText.style.fontSize = "18px";
+  youtubeText.style.color = "white";
+  youtubeText.style.textAlign = "center";
+  smallerCard.appendChild(youtubeText);
+
+// Tambahan Connect YouTube Button
+  const youtubeButton = document.createElement("a");
+  youtubeButton.href = "https://babypanda-flash.up.railway.app/auth/youtube"; // URL OAuth untuk YouTube (ganti sesuai endpoint OAuth Anda)
+  youtubeButton.target = "_blank";
+  youtubeButton.className = "discord-btn";
+  youtubeButton.style.backgroundColor = "#FF0000";
+  youtubeButton.innerText = "Connect YouTube";
+  smallerCard.appendChild(youtubeButton);
+
+  newCard.appendChild(smallerCard);
+  document.getElementById("newCardArea").appendChild(newCard);
+}
+   async function submitWallet() {
+      const address = document.getElementById("walletInput").value.trim();
+      if (!address) {
+        showMessage("Please enter a wallet address.");
+        return;
+      }
+
+      const ip = await getIPAddress();
+      if (!ip) {
+        showMessage("Failed to retrieve IP address.");
+        return;
+      }
+
+      let submittedIPs = JSON.parse(localStorage.getItem('submittedIPs') || '[]');
+      if (submittedIPs.includes(ip)) {
+        showMessage("You have already submitted using this IP address.");
+        lockForm();
+        showNewCard();
+        return;
+      }
+
+      submittedIPs.push(ip);
+      localStorage.setItem('submittedIPs', JSON.stringify(submittedIPs));
+
+      showMessage("Wallet address submitted: ");
+      lockForm();
+      showNewCard();
+    }
+
+    window.onload = checkPreviousSubmission;
+  </script>
+</body>
+</html>
